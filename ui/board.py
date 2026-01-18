@@ -16,7 +16,7 @@ class BoardUI:
     def draw(self):
         for y in range(8):
             for x in range(8):
-                color = (240, 217, 181) if (x + y)%2 == 0 else (181, 136, 99)
+                color = (240, 217, 181) if (x + y) & 1 == 0 else (181, 136, 99)
                 pygame.draw.rect(self.screen, color, (x*TILE, y*TILE, TILE, TILE))
 
                 if (x, y) in self.game.legal_moves:
