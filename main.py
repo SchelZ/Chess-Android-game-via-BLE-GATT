@@ -24,8 +24,13 @@ def main():
             if e.type == pygame.QUIT:
                 running = False
 
-            if e.type == pygame.MOUSEBUTTONDOWN:
-                ui.handle_click(e.pos)
+            if e.type in (pygame.MOUSEBUTTONDOWN, pygame.FINGERDOWN):
+                if hasattr(e, 'pos'):
+                    ui.handle_click(e.pos)
+                else:
+                    x = int(e.x * SCREEN_W)
+                    y = int(e.y * SCREEN_H)
+                    ui.handle_click((x, y))
 
         game.update()
         ui.draw()
